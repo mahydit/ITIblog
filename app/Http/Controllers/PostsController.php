@@ -19,7 +19,7 @@ class PostsController extends Controller
     public function create()
     {
         $users = User::all();
-        return view('posts.create',[
+        return view('posts.create', [
             'users' => $users,
         ]);
     }
@@ -47,23 +47,22 @@ class PostsController extends Controller
 
     public function show(Post $post)
     {
-        // TODO: Show post creator 
+        // TODO: Show post creator
         return view('posts.show', [
             'post' => $post,
+            'user'=>User::find($post->user_id),
         ]);
     }
 
     public function destroy($post)
     {
-        Post::where('id',$post)->delete();
+        Post::where('id', $post)->delete();
         return redirect()->route('posts.index');
-        
     }
 
     public function update($post)
     {
         Post::find($post)->update(request()->all());
         return redirect()->route('posts.index');
-        
     }
 }
