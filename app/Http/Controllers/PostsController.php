@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\DB;
 use App\Post;
 use App\User;
 
@@ -18,9 +17,8 @@ class PostsController extends Controller
 
     public function create()
     {
-        $users = User::all();
         return view('posts.create', [
-            'users' => $users,
+            'users' => User::all(),
         ]);
     }
 
@@ -33,21 +31,15 @@ class PostsController extends Controller
 
     public function edit(Post $post)
     {
-        // $post = Post::where('id',$post)->get()->first();
-        //select * from posts where id=1 limit 1;
-        // $post = Post::where('id',$post)->first();
-        // $post = Post::find($post);
-
-        //TODO: Edit post create as well
-
         return view('posts.edit', [
             'post' => $post,
+            'users' => User::all(),
+            
         ]);
     }
 
     public function show(Post $post)
     {
-        // TODO: Show post creator
         return view('posts.show', [
             'post' => $post,
             'user'=>User::find($post->user_id),
