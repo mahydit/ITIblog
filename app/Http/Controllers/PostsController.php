@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Post\StorePostRequest;
+use App\Http\Requests\Post\UpdatePostRequest;
 use Illuminate\Http\Request;
 use App\Post;
 use App\User;
@@ -22,9 +24,9 @@ class PostsController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(StorePostRequest $request)
     {
-        Post::create(request()->all());
+        Post::create($request->all());
 
         return redirect()->route('posts.index');
     }
@@ -52,9 +54,9 @@ class PostsController extends Controller
         return redirect()->route('posts.index');
     }
 
-    public function update($post)
+    public function update(UpdatePostRequest $request,$post)
     {
-        Post::find($post)->update(request()->all());
+        Post::find($post)->update($request->all());
         return redirect()->route('posts.index');
     }
 }
