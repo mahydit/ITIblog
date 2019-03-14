@@ -16,13 +16,13 @@
     @foreach($posts as $post)
     <tr>
       <th scope="row">{{$post->id}}</th>
-      <td>{{$post->title}}</td>
+      <td>{{$post->slug}}</td>
       <td>{{$post->description}}</td>
       <td>{{ date('d-m-Y', strtotime($post->created_at))}}</td>
       <td>{{ isset($post->user) ? $post->user->name : 'Not Found'}}</td>
       <td>
       <a class="btn btn-info" href="{!! route('posts.show',['post'=>$post->id])!!}" role="button">View</a><br><br>
-      <a class="btn btn-light" href="{!! route('posts.edit',['post'=>$post->id])!!}" role="button">Edit</a><br><br>
+      <a class="btn btn-warning" href="{!! route('posts.edit',['post'=>$post->id])!!}" role="button">Edit</a><br><br>
       <form method="post" action="{!! route('posts.destroy',['post'=>$post->id])!!}">
         @method('DELETE')
         @csrf
