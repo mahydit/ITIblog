@@ -47,9 +47,13 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
+                                
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{route('posts.index')}}">All Posts</a>
+                                </li>
+                                <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
@@ -73,7 +77,9 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
             @yield('content')
+            </div>
         </main>
     </div>
 </body>
