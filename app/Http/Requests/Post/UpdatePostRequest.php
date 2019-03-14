@@ -23,8 +23,6 @@ class UpdatePostRequest extends FormRequest
      */
     public function rules()
     {
-        // Post::find(request()->all());
-        // dd(request()->all()['title'],$this->post,$this->posts);
         return [
             'title' => 'required|min:3|unique:posts,title,'.$this->post,
             'description' => 'required|min:10'
